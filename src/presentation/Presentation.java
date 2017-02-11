@@ -4,6 +4,8 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Scanner;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import dao.*;
 
 import metier.Imetier;
@@ -16,7 +18,7 @@ public class Presentation {
 	public static void main(String[] args) {
 		
 		
-		
+		/*
 		try {
 			Scanner scanner = new Scanner(new File("config.txt"));
 			String daoClassName = scanner.nextLine();
@@ -34,12 +36,18 @@ public class Presentation {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
 		
 		
 //		DaoImpl dao = new DaoImpl();
 //		MetierImpl metier = new MetierImpl();
 //		metier.setDao(dao);
+		
+		
+		ClassPathXmlApplicationContext context = 
+				new ClassPathXmlApplicationContext(new String[] {"spring-ioc.xml"});
+		
 		
         
 	}
