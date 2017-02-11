@@ -4,12 +4,19 @@ import dao.IDAO;
 
 public class MetierImpl implements Imetier {
 
-	IDAO dao ;
+	private IDAO dao ;
 	
+	public IDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(IDAO dao) {
+		this.dao = dao;
+	}
+
 	@Override
 	public double calcul() {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.getValue()*2;
 	}
    
 }
