@@ -43,12 +43,17 @@ public class Presentation {
 //		DaoImpl dao = new DaoImpl();
 //		MetierImpl metier = new MetierImpl();
 //		metier.setDao(dao);
+		ClassPathXmlApplicationContext context =null;
+		try {
+			 context = 
+					new ClassPathXmlApplicationContext(new String[] {"spring-ioc.xml"});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
-		ClassPathXmlApplicationContext context = 
-				new ClassPathXmlApplicationContext(new String[] {"spring-ioc.xml"});
-		
-		
+		Imetier metier = (Imetier) context.getBean("metier");
+		System.out.println(metier.calcul());
         
 	}
 
