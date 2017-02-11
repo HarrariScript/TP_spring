@@ -1,6 +1,7 @@
 package presentation;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 import dao.*;
@@ -22,17 +23,14 @@ public class Presentation {
 			String metierClassName = scanner.nextLine();
 			
 			Class cDao = Class.forName(daoClassName);
-			Class cMetier = Class.forName(metierClassName);
-			
+			Class cMetier = Class.forName(metierClassName);	
 			IDAO dao = (IDAO) cDao.newInstance();
-			
 			Imetier metier = (Imetier)  cMetier.newInstance();
+			Method met = cMetier.getMethod("setDao", new Class[]{IDAO.class});
+			met.invoke(metier, new Object[]{dao});
+			System.out.println(metier.calcul());
 			
-			
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -43,7 +41,7 @@ public class Presentation {
 //		MetierImpl metier = new MetierImpl();
 //		metier.setDao(dao);
 		
-        System.out.println(metier.calcul());
+        
 	}
 
 }
