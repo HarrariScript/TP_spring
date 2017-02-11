@@ -4,6 +4,8 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Scanner;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.*;
@@ -43,16 +45,17 @@ public class Presentation {
 //		DaoImpl dao = new DaoImpl();
 //		MetierImpl metier = new MetierImpl();
 //		metier.setDao(dao);
-		ClassPathXmlApplicationContext context =null;
-		try {
-			 context = 
-					new ClassPathXmlApplicationContext(new String[] {"spring-ioc.xml"});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		ClassPathXmlApplicationContext context =null;
+//		try {
+//			 context = 
+//					new ClassPathXmlApplicationContext(new String[] {"spring-ioc.xml"});
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+		ApplicationContext springContext = new AnnotationConfigApplicationContext("dao","metier");
 		
-		
-		Imetier metier = (Imetier) context.getBean("metier");
+		Imetier metier = springContext.getBean(Imetier.class);
 		System.out.println(metier.calcul());
         
 	}
